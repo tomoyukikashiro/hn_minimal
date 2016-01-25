@@ -1,54 +1,30 @@
-import React, { Component } from 'react';
+import { h, Component } from 'preact';
 import Navigation from './Navigation';
 import TopItems from './TopItems';
 
-var App = React.createClass({
-  loadItems: function() {
-    var api_url = 'https://hacker-news.firebaseio.com/v0/topstories.json';
-    var that = this;
+const API_ORIGIN = 'https://hacker-news.firebaseio.com';
 
-    $.ajax({
-      url: api_url,
-      dataType: 'json',
-      cache: false,
-      error: function(xhr, status, err) {
-        console.error(this.props.url, status, err.toString());
-      }.bind(this)
+const asJson = r => r.json();
 
-    }).then( function(items) {
-      var top_items = items.slice(0, 19).map(function(item) {
-        return $.ajax({
-          url: 'https://hacker-news.firebaseio.com/v0/item/' + item + '.json',
-          dataType: 'json'
-        });
-      });
-      return $.when.apply($, top_items);
+export default class App extends Component {
+	state = { items: [] };
 
-    }).then( function() {
-      var raw_items = $.map(arguments, function(value, i){
-        return value[0];
-      });
+	loadItems() {
+		fetch(`${API_ORIGIN}/v0/topstories.json`).then(asJson)
+			.then( items => Promise.all( items.slice(0, 19).map(
+				item => fetch(`${API_ORIGIN}/v0/item/${item}.json`).then(asJson)
+			)) )
+			.then( items => this.setState({ items }) );
+	}
 
-      that.setState({items: raw_items});
-    });
-  },
+	componentDidMount() {
+		this.loadItems();
+		if (this.props.autoreload=='true') {
+			setInterval(::this.loadItems, 4000);
+		}
+	}
 
-  getInitialState: function() {
-    return {items: []};
-  },
-
-  componentDidMount: function() {
-    this.loadItems();
-    if (this.props.autoreload == 'true') {
-      setInterval(this.loadItems, 4000);
-    }
-  },
-
-  render: function() {
-    return (
-      <TopItems items={this.state.items} />
-    );
-  }
-});
-
-export default App;
+	render({ }, { items }) {
+		return <TopItems items={items} />;
+	}
+}

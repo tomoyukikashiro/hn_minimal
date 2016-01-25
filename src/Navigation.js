@@ -1,23 +1,17 @@
-import React, { Component } from 'react';
+import { h, Component } from 'preact';
 
-var Navigation = React.createClass({
-  getInitialState: function() {
-    return {lastUpdate: ''};
-  },
+export default class Navigation extends Component {
+	componentDidMount() {
+		let lastUpdate = new Date();
+		this.setState({ lastUpdate });
+	}
 
-  componentDidMount: function() {
-    var lastUpdate = new Date();
-    this.setState({lastUpdate: lastUpdate.toString()});
-  },
-
-  render: function() {
-    return (
-      <div className='navigation'>
-        <h1>Hacker News</h1>
-        <span>Last updated at {this.state.lastUpdate}</span>
-      </div>
-    );
-  }
-});
-
-export default Navigation;
+	render({ }, { lastUpdate }) {
+		return (
+			<div class="navigation">
+				<h1>Hacker News</h1>
+				<span>Last updated at {lastUpdate ? lastUpdate.toString() : 'never'}</span>
+			</div>
+		);
+	}
+}

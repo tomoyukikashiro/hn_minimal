@@ -1,9 +1,5 @@
-import React, { Component } from 'react';
+import { h } from 'preact';
 
-export default class Title extends Component {
-  render() {
-    return (
-      <strong>My Title</strong>
-    );
-  }
-}
+export default () => (
+	<strong>My Title</strong>
+);
