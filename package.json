@@ -4,7 +4,7 @@
   "description": "Minimal hacker news client written in Preact.",
   "scripts": {
     "start": "node server.js",
-    "build": "mkdir -p dist && cp -r {css,index.html} dist && webpack -p",
+    "build": "mkdir -p dist && cp index.html dist && cp -r ./css dist && webpack -p",
     "test": "npm run -s lint",
     "lint": "eslint src",
     "deploy": "gh-pages -d dist"
