@@ -8,10 +8,22 @@ a {
 a:visited {
   color: #999;
 }
+.navigation{
+  text-align: center;
+}
+
+.topitems{
+  text-align: center;
+}
+.topitems button{
+  padding: 0.2em 0.5em;
+  font-size: 1.4em;
+}
+
 .item {
   float: left;
   width: 100%;
-  margin: .75em 0;
+  margin: .45em 0;
 }
 .item .title {
   font-size: 1.3em;
