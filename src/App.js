@@ -25,6 +25,9 @@ export default class App extends Component {
 	}
 
 	render({ }, { items }) {
-		return <TopItems items={items} />;
+		return (<div>
+				<Navigation />
+				<TopItems items={items} />
+			   </div>);
 	}
 }

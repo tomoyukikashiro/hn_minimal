@@ -1,5 +1,8 @@
 import { h } from 'preact';
 
 export default () => (
-	<strong>My Title</strong>
+	<div>
+		<strong>HackerNews Minimal</strong> 
+		<small>by Reflux</small>
+	</div>
 );

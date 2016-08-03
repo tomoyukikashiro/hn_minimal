@@ -23,7 +23,7 @@ export default class TopItems extends Component {
 }
 
 const SortButton = ({ sortByScore }) => (
-	<div>
-		<a class="button" onClick={sortByScore}>Sort!</a>
+	<div class="topitems">
+		<button class="button" onClick={sortByScore}>Sort!</button>
 	</div>
 );
