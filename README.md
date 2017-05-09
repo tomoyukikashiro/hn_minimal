@@ -7,3 +7,6 @@ The original React+jQuery app was **295kb**. Refactored to [Preact] + `fetch()`,
 ![hn_minimal](http://i.imgur.com/NwshJSe.png)
 
 [Preact]: https://github.com/developit/preact
+
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/developit/hn_minimal.svg)](https://greenkeeper.io/)
