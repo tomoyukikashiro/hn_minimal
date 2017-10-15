@@ -11,7 +11,7 @@ export default class TopItems extends Component {
 	render({ items }) {
 		return (
 			<div>
-				<SortButton items={items} sortByScore={::this.sortByScore}/>
+				<SortButton sortByScore={::this.sortByScore}/>
 				<div class="top-stories">
 					{ items.map( (item, i) => (
 						<Item key={item.id} rank={i} item={item} />
